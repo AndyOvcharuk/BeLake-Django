@@ -82,7 +82,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 LANGUAGE_CODE = 'en-gb'
-TIME_ZONE = 'Europe/Berlin'
+TIME_ZONE = 'UTC'
 USE_I18N = True  # setting the default language for users, if their locale isn't known
 USE_L10N = True  # enabling date/time to be displayed in a local format
 USE_TZ = True  # enabling timezone support
