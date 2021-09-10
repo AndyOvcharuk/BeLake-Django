@@ -1,5 +1,6 @@
 import os
-
+import django_heroku
+import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -9,7 +10,8 @@ SECRET_KEY = 'exhlfdat&vfum(-24*c2uf4wwddcp$o$9pv98=e6p^gl(-eoj'
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '127.0.0.1:8000']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1',
+                 '127.0.0.1:8000', 'belake-django.herokuapp.com']
 
 # Application definition
 
@@ -61,6 +63,8 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -85,6 +89,7 @@ USE_TZ = True  # enabling timezone support
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'BeLake-Django/static')]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -94,3 +99,6 @@ LOGIN_URL = 'login'
 
 # Defining a view for the CSRF error
 CSRF_FAILURE_VIEW = 'blog.views.csrf_failure'
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
