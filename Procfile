@@ -1,1 +1,1 @@
-web: gunicorn belake-django.wsgi
+web: gunicorn django_project.wsgi
